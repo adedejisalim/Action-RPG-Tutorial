@@ -7,6 +7,7 @@ var velocity = Vector2.ZERO
 
 var animPlayer
 onready var animTree = $AnimationTree
+onready var animState = animTree.get('parameters/playback')
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -17,6 +18,8 @@ onready var animTree = $AnimationTree
 func _ready():
 	animPlayer = $AnimationPlayer
 	animTree.active = true;
+	animState.start('Idle')
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,5 +31,9 @@ func _process(delta):
 	
 	velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	
-	animTree.set('parameters/blend_posoition', input_vector)
+	if input_vector != Vector2.ZERO:
+		animTree.set('parameters/Move/blend_position', input_vector)
+		animState.travel('Move')
+	else:
+		animState.travel('Idle')
 	velocity = move_and_slide(velocity) 
