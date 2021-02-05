@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://crate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+
+[node name="World" type="Node2D"]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 431.757, 164.398 )
+
+[node name="YSort" type="YSort" parent="YSort"]
+
+[node name="crate" parent="YSort/YSort" instance=ExtResource( 1 )]
+position = Vector2( 434.038, 193.787 )
+
+[node name="crate2" parent="YSort/YSort" instance=ExtResource( 1 )]
+position = Vector2( 428.75, 71.3927 )
+
+[node name="crate3" parent="YSort/YSort" instance=ExtResource( 1 )]
+position = Vector2( 349.658, 162.969 )
